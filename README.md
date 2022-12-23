@@ -1,12 +1,12 @@
-# Astro with microCMS boiterplate.
+# Astro with Newt boiterplate.
 
-このレポジトリは、Astro で microCMS を使った静的サイトジェネレートするプロジェクトです。
+このレポジトリは、Astro で Newt を使った静的サイトジェネレートするプロジェクトです。
 
 ## 利用方法
 
-### microCMS コンテンツの作成
+### Newt コンテンツの作成
 
-https://microcms.co.jp/ にアクセスしてアカウントを登録後に、コンテンツを作成してください。
+https://www.newt.so/ にアクセスしてアカウントを登録後に、コンテンツを作成してください。
 
 このボイラープレートが想定しているコンテンツは以下の通りです。
 
@@ -18,15 +18,16 @@ https://microcms.co.jp/ にアクセスしてアカウントを登録後に、�
 | image | 画像 |
 | body | リッチテキスト |
 
-### microCMS API キーの設定
+### Newt トークンの設定
 
-https://microcms.co.jp/ のチーム設定にある API キーを取得して、`.env` ファイルに API キーとドメインメイン(xxx.microcms.io の xxx の部分)
+https://www.newt.so/ のチーム設定にある API キーを取得して、`.env` ファイルに API キーとスペースUidとAPIタイプを指定してください。
 
 設定例：
 
 ```bash
-API_DOMAIN=xxxxx
-MICROCMS_API_KEY=ABCDEFGHIJKLMNOPQRSTU
+SPACE_UID=xxxxx
+NEWT_TOKEN=ABCDEFGHIJKLMNOPQRSTU
+API_TYPE=api
 ```
 
 ## ビルド方法
