@@ -1,0 +1,46 @@
+---
+import { newtApiClient } from "../../lib/newt"
+
+
+export async function getStaticPaths() {
+    const contents = await newtApiClient.getContents({
+        appUid: "blog",
+        modelUid: "blog"
+    })
+    const pages = contents.items.map((content => {
+        const title = content.title
+        const description = content.description
+        const date = content.date
+        const image = content.image.src
+        const body = content.body
+        const alias = content._id
+        return {
+            params: { alias },
+            props: {
+                title,
+                description,
+                date,
+                image,
+                body,
+            },
+        }
+    }))
+    return pages;
+}
+
+const { title, description, date, image, body } = Astro.props;
+---
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{title}</title>
+    </head>
+  <body>
+    <img src={`${image}`} alt={`${description}`}>
+    <h1>{title}</h1>
+    <time>{date}</time>
+    <article set:html={body} />
+  </body>
+</html>

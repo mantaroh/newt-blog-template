@@ -1,0 +1,54 @@
+---
+import { newtApiClient } from "../lib/newt"
+
+const contents = await newtApiClient.getContents({
+  appUid: "blog",
+  modelUid: "blog"
+})
+const posts = contents.items.map(c => {
+  console.log(c)
+	const title = c.title
+	const description = c.description
+	const date = c.date
+	const image = c.image.url
+	const alias = c._id
+	return {
+		title,
+		alias,
+		description,
+		date,
+		image,
+	}
+})
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>My Blog</title>
+  </head>
+  <body>
+    <head>
+      
+    </head>
+    <h1>My Blog</h1>
+    <section class="container">
+      <ul>
+        {posts.map((post) => (
+          <li>
+            <figure>
+              <img src={`${post.image}`} alt={`${post.description}`} />
+            </figure>
+            <a href={`/posts/${post.alias}/`}>
+              <h2>{post.title}</h2>
+            </a>
+            <time>{post.date}</time>
+            <p>{post.description}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </body>
+</html>
